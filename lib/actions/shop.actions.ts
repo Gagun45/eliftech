@@ -18,16 +18,15 @@ export const createNewShop = async (
 };
 
 export const getAllShops = async (): Promise<{
-  success: boolean;
   shops: Prisma.ShopGetPayload<{ select: { title: true; id: true } }>[];
 }> => {
   try {
     const shops = await prisma.shop.findMany({
       select: { title: true, id: true },
     });
-    return { success: true, shops };
+    return { shops };
   } catch (err) {
     console.log("Get all shops error: ", err);
-    return { success: false, shops: [] };
+    return { shops: [] };
   }
 };

@@ -1,22 +1,33 @@
-import { getAllShops } from "@/lib/actions/shop.actions";
-import type { ShopType } from "@/lib/types";
-import { createApi, type BaseQueryFn } from "@reduxjs/toolkit/query/react";
-
-const serverActionBaseQuery: BaseQueryFn<void, unknown, unknown> = async () => {
-  try {
-    const data = await getAllShops();
-    return { data };
-  } catch (error) {
-    return { error };
-  }
-};
+import { createNewShop, getAllShops } from "@/lib/actions/shop.actions";
+import type { ActionReturnType, ShopType } from "@/lib/types";
+import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const allShopsApi = createApi({
   reducerPath: "allShops",
-  baseQuery: serverActionBaseQuery,
+  tagTypes: ["Shops"],
+  baseQuery: fakeBaseQuery(),
   endpoints: (builder) => ({
-    getShops: builder.query<{ success: boolean; shops: ShopType[] }, void>({
-      query: () => undefined,
+    getShops: builder.query<{ shops: ShopType[] }, void>({
+      queryFn: async () => {
+        try {
+          const data = await getAllShops();
+          return { data };
+        } catch (error) {
+          return { error };
+        }
+      },
+      providesTags: ["Shops"],
+    }),
+    createShop: builder.mutation<ActionReturnType, { title: string }>({
+      queryFn: async ({ title }) => {
+        try {
+          const data = await createNewShop({ title });
+          return { data };
+        } catch (error) {
+          return { error };
+        }
+      },
+      invalidatesTags: ["Shops"],
     }),
   }),
 });

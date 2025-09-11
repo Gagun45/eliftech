@@ -12,14 +12,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { createNewShop } from "@/lib/actions/shop.actions";
 import type { CreateShopType } from "@/lib/types";
-import { createShopSchema } from "@/lib/zod-schemas";
+import { ShopSchema } from "@/lib/zod-schemas";
+import { allShopsApi } from "@/redux/services/allShopsService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 
 const CreateShopForm = () => {
+  const dispatch = useDispatch()
   const form = useForm<CreateShopType>({
-    resolver: zodResolver(createShopSchema),
+    resolver: zodResolver(ShopSchema),
     defaultValues: {
       title: "",
       flowerIds: [],
@@ -30,6 +33,7 @@ const CreateShopForm = () => {
     const res = await createNewShop({ title });
     if (res.success) {
       toast.success(res.message);
+      dispatch(allShopsApi.util.invalidateTags(['Shops']))
     } else {
       toast.error(res.message);
     }
