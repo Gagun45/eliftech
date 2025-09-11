@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import { Toaster } from "sonner";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/AppSidebar/AppSidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +31,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
-        <Toaster richColors/>
+        <SidebarProvider>
+          <AppSidebar />
+          <main className="grow">
+            <Header />
+            {children}
+          </main>
+          <Toaster richColors />
+        </SidebarProvider>
       </body>
     </html>
   );
