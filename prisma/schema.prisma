@@ -12,3 +12,18 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Flower {
+  id       Int    @id @default(autoincrement())
+  title    String
+  imageUrl String @default("")
+
+  shops Shop[] @relation("FlowersShop")
+}
+
+model Shop {
+  id    Int    @id @default(autoincrement())
+  title String @unique
+
+  flowers Flower[] @relation("FlowersShop")
+}
