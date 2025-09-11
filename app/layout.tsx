@@ -5,6 +5,7 @@ import Header from "@/components/Header/Header";
 import { Toaster } from "sonner";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar/AppSidebar";
+import ReduxProvider from "@/redux/ReduxProvider/ReduxProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,14 +32,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SidebarProvider>
-          <AppSidebar />
-          <main className="grow">
-            <Header />
-            {children}
-          </main>
-          <Toaster richColors />
-        </SidebarProvider>
+        <ReduxProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <main className="grow">
+              <Header />
+              {children}
+            </main>
+            <Toaster richColors />
+          </SidebarProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

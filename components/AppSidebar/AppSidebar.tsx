@@ -2,17 +2,16 @@ import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
   SidebarHeader,
 } from "@/components/ui/sidebar";
+import SidebarShopsGroup from "./SidebarShopsGroup/SidebarShopsGroup";
 
 export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader />
       <SidebarContent>
-        <SidebarGroup />
-        <SidebarGroup />
+        <SidebarShopsGroup />
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>
