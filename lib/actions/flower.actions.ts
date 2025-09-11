@@ -9,7 +9,7 @@ export const createNewFlower = async (
   try {
     const { title, shopId } = values;
     await prisma.flower.create({
-      data: { title, shops: { connect: { id: shopId } } },
+      data: { title, shopId },
     });
     return { success: true, message: "New flower created" };
   } catch (err) {

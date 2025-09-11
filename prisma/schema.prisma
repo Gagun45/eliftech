@@ -18,12 +18,13 @@ model Flower {
   title    String
   imageUrl String @default("")
 
-  shops Shop[] @relation("FlowersShop")
+  shop  Shop @relation("FlowersShop", fields: [shopId], references: [id])
+  shopId Int
 }
 
 model Shop {
-  id    Int    @id @default(autoincrement())
-  title String @unique
-
+  id      Int      @id @default(autoincrement())
+  title   String   @unique
+  slug    String   @unique @default(cuid())
   flowers Flower[] @relation("FlowersShop")
 }

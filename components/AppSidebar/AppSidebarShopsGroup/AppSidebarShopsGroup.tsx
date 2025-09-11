@@ -2,6 +2,7 @@
 
 import { SidebarGroup, SidebarMenuItem } from "@/components/ui/sidebar";
 import { useGetShopsQuery } from "@/redux/services/allShopsService";
+import Link from "next/link";
 
 const AppSidebarShopsGroup = () => {
   const { data, isLoading, isError } = useGetShopsQuery();
@@ -20,7 +21,9 @@ const AppSidebarShopsGroup = () => {
   return (
     <SidebarGroup>
       {data?.shops.map((shop) => (
-        <SidebarMenuItem key={shop.id}>{shop.title}</SidebarMenuItem>
+        <SidebarMenuItem key={shop.id}>
+          <Link href={`/shop/${shop.slug}`}>{shop.title}</Link>
+        </SidebarMenuItem>
       ))}
     </SidebarGroup>
   );

@@ -1,8 +1,7 @@
 "use server";
 
-import type { Prisma } from "@prisma/client";
 import prisma from "../prisma";
-import type { ActionReturnType, CreateShopType } from "../types";
+import type { ActionReturnType, CreateShopType, ShopType } from "../types";
 
 export const createNewShop = async (
   values: CreateShopType
@@ -18,12 +17,10 @@ export const createNewShop = async (
 };
 
 export const getAllShops = async (): Promise<{
-  shops: Prisma.ShopGetPayload<{ select: { title: true; id: true } }>[];
+  shops: ShopType[];
 }> => {
   try {
-    const shops = await prisma.shop.findMany({
-      select: { title: true, id: true },
-    });
+    const shops = await prisma.shop.findMany({ include: { flowers: true } });
     return { shops };
   } catch (err) {
     console.log("Get all shops error: ", err);

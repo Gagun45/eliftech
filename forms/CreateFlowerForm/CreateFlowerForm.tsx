@@ -67,6 +67,7 @@ const CreateFlowerForm = () => {
               <FormLabel>Choose Shop</FormLabel>
               <Select
                 onValueChange={(id) => form.setValue("shopId", Number(id))}
+                value={form.watch("shopId")?.toString() ?? ""}
               >
                 <FormControl>
                   <SelectTrigger className="w-[180px]">
