@@ -3,7 +3,7 @@
 import { SidebarGroup, SidebarMenuItem } from "@/components/ui/sidebar";
 import { useGetShopsQuery } from "@/redux/services/allShopsService";
 
-const SidebarShopsGroup = () => {
+const AppSidebarShopsGroup = () => {
   const { data, isLoading, isError } = useGetShopsQuery();
   if (isLoading)
     return (
@@ -25,4 +25,4 @@ const SidebarShopsGroup = () => {
     </SidebarGroup>
   );
 };
-export default SidebarShopsGroup;
+export default AppSidebarShopsGroup;

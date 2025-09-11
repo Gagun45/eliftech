@@ -1,19 +1,14 @@
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-} from "@/components/ui/sidebar";
-import SidebarShopsGroup from "./SidebarShopsGroup/SidebarShopsGroup";
+import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
+import AppSidebarShopsGroup from "./AppSidebarShopsGroup/AppSidebarShopsGroup";
+import AppSidebarHeader from "./AppSidebarHeader/AppSidebarHeader";
 
 export function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarHeader />
+      <AppSidebarHeader />
       <SidebarContent>
-        <SidebarShopsGroup />
+        <AppSidebarShopsGroup />
       </SidebarContent>
-      <SidebarFooter />
     </Sidebar>
   );
 }
