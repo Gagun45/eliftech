@@ -10,10 +10,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createNewShop } from "@/lib/actions/shop.actions";
 import type { CreateShopType } from "@/lib/types";
 import { createShopSchema } from "@/lib/zod-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const CreateShopForm = () => {
   const form = useForm<CreateShopType>({
@@ -23,8 +25,15 @@ const CreateShopForm = () => {
       flowerIds: [],
     },
   });
-  const onSubmit = (values: CreateShopType) => {
-    console.log(values);
+  const onSubmit = async (values: CreateShopType) => {
+    const { title } = values;
+    const res = await createNewShop({ title });
+    if (res.success) {
+      toast.success(res.message);
+    } else {
+      toast.error(res.message);
+    }
+    form.reset();
   };
   return (
     <Form {...form}>
