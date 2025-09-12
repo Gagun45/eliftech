@@ -30,3 +30,15 @@ export const createOrder = async (
     return { message: "Something went wrong", success: false };
   }
 };
+
+export const getOrderById = async ({ orderId }: { orderId: number }) => {
+  try {
+    const order = await prisma.order.findUniqueOrThrow({
+      where: { id: orderId },
+      include: { orderItems: true },
+    });
+    return { order };
+  } catch {
+    return { error: "Something went wrong" };
+  }
+};
