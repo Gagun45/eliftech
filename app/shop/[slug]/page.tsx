@@ -15,7 +15,7 @@ const ShopPage = async ({ params }: Props) => {
   if (!shop) return <main>No shop found</main>;
   return (
     <main>
-      <h1>Shop {shop.title} page</h1>
+      <h1 className="text-center font-bold text-4xl py-4">{shop.title}</h1>
       <ShopPageContent shopId={shop.id} />
     </main>
   );

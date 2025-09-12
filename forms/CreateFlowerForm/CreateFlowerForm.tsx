@@ -17,16 +17,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { createNewFlower } from "@/lib/actions/flower.actions";
 import type { CreateFlowerType } from "@/lib/types";
 import { FlowerSchema } from "@/lib/zod-schemas";
 import { useGetShopsQuery } from "@/redux/services/allShopsService";
+import { useCreateFlowerMutation } from "@/redux/services/singleShopService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const CreateFlowerForm = () => {
   const { data } = useGetShopsQuery();
+  const [createFlowerMutation] = useCreateFlowerMutation();
   const form = useForm<CreateFlowerType>({
     resolver: zodResolver(FlowerSchema),
     defaultValues: {
@@ -35,14 +36,18 @@ const CreateFlowerForm = () => {
     },
   });
   const onSubmit = async (values: CreateFlowerType) => {
-    const { title, shopId, price } = values;
-    const res = await createNewFlower({ title, shopId, price });
-    if (res.success) {
-      toast.success(res.message);
-    } else {
-      toast.error(res.message);
+    try {
+      const { title, shopId, price } = values;
+      const res = await createFlowerMutation({ title, shopId, price }).unwrap();
+      if (res.success) {
+        toast.success(res.message);
+      } else {
+        toast.error(res.message);
+      }
+    } catch {
+    } finally {
+      form.reset();
     }
-    form.reset();
   };
   return (
     <Form {...form}>

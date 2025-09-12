@@ -35,10 +35,10 @@ export default function RootLayout({
         <ReduxProvider>
           <SidebarProvider>
             <AppSidebar />
-            <main className="grow">
+            <div className="grow">
               <Header />
               {children}
-            </main>
+            </div>
             <Toaster richColors />
           </SidebarProvider>
         </ReduxProvider>

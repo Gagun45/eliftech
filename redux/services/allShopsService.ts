@@ -23,8 +23,8 @@ export const allShopsApi = createApi({
         try {
           const data = await createNewShop({ title });
           return { data };
-        } catch (error) {
-          return { error };
+        } catch {
+          return { data: { message: "Something went wrong", success: false } };
         }
       },
       invalidatesTags: ["Shops"],
@@ -32,4 +32,4 @@ export const allShopsApi = createApi({
   }),
 });
 
-export const { useGetShopsQuery } = allShopsApi;
+export const { useGetShopsQuery, useCreateShopMutation } = allShopsApi;

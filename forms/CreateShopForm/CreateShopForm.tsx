@@ -10,17 +10,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createNewShop } from "@/lib/actions/shop.actions";
 import type { CreateShopType } from "@/lib/types";
 import { ShopSchema } from "@/lib/zod-schemas";
-import { allShopsApi } from "@/redux/services/allShopsService";
+import {
+  allShopsApi,
+  useCreateShopMutation,
+} from "@/redux/services/allShopsService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 
 const CreateShopForm = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const form = useForm<CreateShopType>({
     resolver: zodResolver(ShopSchema),
     defaultValues: {
@@ -28,16 +30,22 @@ const CreateShopForm = () => {
       flowerIds: [],
     },
   });
+  const [createShopMutation, {}] = useCreateShopMutation();
   const onSubmit = async (values: CreateShopType) => {
-    const { title } = values;
-    const res = await createNewShop({ title });
-    if (res.success) {
-      toast.success(res.message);
-      dispatch(allShopsApi.util.invalidateTags(['Shops']))
-    } else {
-      toast.error(res.message);
+    try {
+      const { title } = values;
+      const res = await createShopMutation({ title }).unwrap();
+      if (res.success) {
+        toast.success(res.message);
+        dispatch(allShopsApi.util.invalidateTags(["Shops"]));
+      } else {
+        toast.error(res.message);
+      }
+    } catch {
+      toast.error("Something went wrong");
+    } finally {
+      form.reset();
     }
-    form.reset();
   };
   return (
     <Form {...form}>

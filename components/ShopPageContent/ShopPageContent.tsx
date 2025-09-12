@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 import PaginationComponent from "../PaginationComponent/PaginationComponent";
 import ShopFlowersContainer from "../ShopFlowersContainer/ShopFlowersContainer";
 import PerPageSelect from "../PerPageSelect/PerPageSelect";
-import { PER_PAGE_CONSTANTS } from "@/lib/constants";
+import { PER_PAGE_CONSTANTS, SORT_FLOWERS_CONSTANTS } from "@/lib/constants";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import type { SortFlowersInterface } from "@/lib/types";
+import SortingComponent from "../SortingComponent/SortingComponent";
 
 interface Props {
   shopId: number;
@@ -14,6 +17,15 @@ interface Props {
 const ShopPageContent = ({ shopId }: Props) => {
   const [perPage, setPerPage] = useState(PER_PAGE_CONSTANTS[0]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [currentSortOpion, setCurrentSortOption] =
+    useState<SortFlowersInterface>(SORT_FLOWERS_CONSTANTS[0]);
+  const handleSortChange = (sortOptionValue: string) => {
+    const newSortOption = SORT_FLOWERS_CONSTANTS.find(
+      (opt) => opt.value === sortOptionValue
+    );
+    if (!newSortOption) setCurrentSortOption(SORT_FLOWERS_CONSTANTS[0]);
+    else setCurrentSortOption(newSortOption);
+  };
   useEffect(() => {
     setCurrentPage(1);
   }, [perPage]);
@@ -33,8 +45,14 @@ const ShopPageContent = ({ shopId }: Props) => {
     shopId,
     page: currentPage,
     perPage,
+    sortOptionValue: currentSortOpion.value,
   });
-  if (isLoading) return <div>LOADING...</div>;
+  if (isLoading)
+    return (
+      <div className="w-full flex pt-12 justify-center">
+        <LoadingSpinner />
+      </div>
+    );
   if (!data?.shop) return <div>nodata</div>;
   const {
     shop: {
@@ -45,6 +63,11 @@ const ShopPageContent = ({ shopId }: Props) => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center w-full">
+        <SortingComponent
+          sortOptions={SORT_FLOWERS_CONSTANTS}
+          handleSortChange={handleSortChange}
+          currentSortOpion={currentSortOpion}
+        />
         <PerPageSelect
           perPage={perPage}
           handlePerPageChange={handlePerPageChange}

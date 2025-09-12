@@ -16,3 +16,8 @@ export interface CartItem {
   amount: number;
   shopTitle: string;
 }
+
+export interface SortFlowersInterface {
+  value: string;
+  label: string;
+}

@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import { SidebarGroup, SidebarMenuItem } from "@/components/ui/sidebar";
 import { useGetShopsQuery } from "@/redux/services/allShopsService";
 import Link from "next/link";
@@ -9,7 +10,9 @@ const AppSidebarShopsGroup = () => {
   if (isLoading)
     return (
       <SidebarGroup>
-        <SidebarMenuItem>Loading...</SidebarMenuItem>
+        <SidebarMenuItem>
+          <LoadingSpinner />
+        </SidebarMenuItem>
       </SidebarGroup>
     );
   if (isError)
