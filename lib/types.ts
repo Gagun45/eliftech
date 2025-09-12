@@ -10,3 +10,8 @@ export type ShopType = Prisma.ShopGetPayload<{
   include: { flowers: true; _count: { select: { flowers: true } } };
 }>;
 export type FlowerType = Prisma.FlowerGetPayload<object>;
+
+export interface CartItem {
+  flower: FlowerType;
+  amount: number;
+}
