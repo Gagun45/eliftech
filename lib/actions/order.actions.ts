@@ -5,7 +5,7 @@ import type { ActionReturnType, FlowerOrderInterface } from "../types";
 
 export const createOrder = async (
   order: FlowerOrderInterface
-): Promise<ActionReturnType> => {
+): Promise<ActionReturnType & { orderId: number | null }> => {
   try {
     const { email, orderItems, phone, totalPrice } = order;
     const newOrder = await prisma.order.create({
@@ -23,11 +23,12 @@ export const createOrder = async (
         },
       },
     });
-    if (!newOrder) return { message: "Something went wrong", success: false };
-    return { message: "Order created", success: true };
+    if (!newOrder)
+      return { message: "Something went wrong", success: false, orderId: null };
+    return { message: "Order created", success: true, orderId: newOrder.id };
   } catch (error) {
     console.log("Create order error: ", error);
-    return { message: "Something went wrong", success: false };
+    return { message: "Something went wrong", success: false, orderId: null };
   }
 };
 

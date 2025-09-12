@@ -7,17 +7,23 @@ export const ordersApi = createApi({
   baseQuery: fakeBaseQuery(),
   endpoints: (builder) => ({
     createOrder: builder.mutation<
-      ActionReturnType,
+      ActionReturnType & { orderId: number | null },
       { order: FlowerOrderInterface }
     >({
       queryFn: async ({ order }) => {
         try {
-          console.log('Creating order...')
+          console.log("Creating order...");
           const data = await createOrder(order);
           return { data };
         } catch (error) {
           console.log("Order services error: ", error);
-          return { data: { message: "Something went wrong", success: false } };
+          return {
+            data: {
+              message: "Something went wrong",
+              success: false,
+              orderId: null,
+            },
+          };
         }
       },
     }),

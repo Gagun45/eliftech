@@ -25,6 +25,7 @@ import {
 } from "@/redux/slices/cartSlice";
 import type { AppDispatch } from "@/redux/store";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -33,6 +34,7 @@ import { toast } from "sonner";
 const CreateOrderForm = () => {
   const { totalPrice } = useSelector(selectCartTotalData);
   const [createOrder, { isLoading }] = useCreateOrderMutation();
+  const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const { cartItems } = useSelector(getCart);
   const form = useForm<CreateOrderType>({
@@ -58,10 +60,10 @@ const CreateOrderForm = () => {
     };
     try {
       const res = await createOrder({ order }).unwrap();
-      if (res.success) {
+      if (res.orderId) {
         toast.success(res.message);
-        form.reset();
         dispatch(clearCart());
+        router.push(`/order/${res.orderId}`);
       } else {
         toast.error(res.message);
       }
