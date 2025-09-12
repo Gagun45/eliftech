@@ -8,7 +8,7 @@ interface Props {
 
 const ShopFlowersContainer = ({ flowers, shopTitle }: Props) => {
   return (
-    <div className="flex flex-wrap gap-4 border-2 border-black">
+    <div className="flex flex-wrap gap-4">
       {flowers.map((flower) => (
         <FlowerCard key={flower.id} flower={flower} shopTitle={shopTitle} />
       ))}

@@ -23,7 +23,7 @@ const SortingComponent = ({
       onValueChange={(value) => handleSortChange(value)}
       value={currentSortOpion.value}
     >
-      <SelectTrigger className="w-fit ml-auto">
+      <SelectTrigger className="w-fit">
         <SelectValue placeholder="Sorting option" />
       </SelectTrigger>
       <SelectContent>

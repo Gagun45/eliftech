@@ -9,10 +9,12 @@ interface Props {
 const FlowerCard = ({ flower, shopTitle }: Props) => {
   console.log("qweqwe");
   return (
-    <div className="bg-green-300 size-48 flex flex-col justify-between">
+    <div className="border-1 rounded-md border-black p-2 min-h-64 w-48 flex flex-col justify-between">
       <span>{flower.title}</span>
-      <div className="h-32 w-full bg-blue-300" />
-      <span>Price: {flower.price}</span>
+      <div className="w-full h-36 shrink-0 bg-blue-300" />
+      <span>
+        Price: <strong>{flower.price}$</strong>
+      </span>
       <CartManage flower={flower} shopTitle={shopTitle} />
     </div>
   );

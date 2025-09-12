@@ -10,6 +10,7 @@ import {
   removeItemFromCart,
 } from "@/redux/slices/cartSlice";
 import type { AppDispatch } from "@/redux/store";
+import { Trash2Icon } from "lucide-react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -22,9 +23,9 @@ const CartManage = ({ flower, shopTitle }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const { isInCart, amountInCart } = useSelector(isFlowerInCart(flower.id));
   return (
-    <div>
+    <div className="flex justify-between gap-4">
       {isInCart && (
-        <div>
+        <div className="w-full flex justify-between items-center">
           <Button
             disabled={amountInCart <= 1}
             onClick={() => dispatch(decrementAmount({ flowerId: flower.id }))}
@@ -42,14 +43,18 @@ const CartManage = ({ flower, shopTitle }: Props) => {
       {isInCart ? (
         <Button
           variant={"destructive"}
+          className="ml-auto"
           onClick={() =>
             dispatch(removeItemFromCart({ flowerIdToDelete: flower.id }))
           }
         >
-          Remove
+          <Trash2Icon />
         </Button>
       ) : (
-        <Button onClick={() => dispatch(addItemToCart({ flower, shopTitle }))}>
+        <Button
+          className="w-full"
+          onClick={() => dispatch(addItemToCart({ flower, shopTitle }))}
+        >
           Add to cart
         </Button>
       )}

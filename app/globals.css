@@ -122,6 +122,6 @@
   }
 
   main {
-    @apply w-full min-h-[calc(100vh-96px)] p-12 bg-accent
+    @apply w-full min-h-[calc(100vh-96px)] p-12 bg-accent flex flex-col items-center
   }
 }

@@ -41,19 +41,13 @@ const ShopPageContent = ({ shopId }: Props) => {
   const handlePerPageChange = (newPerPage: number) => {
     setPerPage(newPerPage);
   };
-  const { data, isLoading } = useGetSingleShopQuery({
+  const { data, isLoading, isFetching } = useGetSingleShopQuery({
     shopId,
     page: currentPage,
     perPage,
     sortOptionValue: currentSortOpion.value,
   });
-  if (isLoading)
-    return (
-      <div className="w-full flex pt-12 justify-center">
-        <LoadingSpinner />
-      </div>
-    );
-  if (!data?.shop) return <div>nodata</div>;
+  if (!data?.shop) return <div>Failed to fetch data</div>;
   const {
     shop: {
       flowers,
@@ -61,8 +55,8 @@ const ShopPageContent = ({ shopId }: Props) => {
     },
   } = data;
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center w-full">
+    <div className="flex flex-col gap-4 w-full max-w-5xl">
+      <div className="flex items-center justify-between w-full">
         <SortingComponent
           sortOptions={SORT_FLOWERS_CONSTANTS}
           handleSortChange={handleSortChange}
@@ -73,7 +67,12 @@ const ShopPageContent = ({ shopId }: Props) => {
           handlePerPageChange={handlePerPageChange}
         />
       </div>
-      <ShopFlowersContainer flowers={flowers} shopTitle={data.shop.title} />
+      {isLoading || isFetching ? (
+        <LoadingSpinner className="mx-auto py-16"/>
+      ) : (
+        <ShopFlowersContainer flowers={flowers} shopTitle={data.shop.title} />
+      )}
+
       <PaginationComponent
         handleGoToPage={handleGoToPage}
         handleNextPage={handleNextPage}

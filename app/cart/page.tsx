@@ -1,21 +1,10 @@
-"use client";
-
-import CartItem from "@/components/CartItem/CartItem";
-import { getCart, selectCartTotalData } from "@/redux/slices/cartSlice";
-import { useSelector } from "react-redux";
+import CartComponent from "@/components/CartComponent/CartComponent";
 
 const CartPage = () => {
-  const { cartItems } = useSelector(getCart);
-  const { totalPrice } = useSelector(selectCartTotalData);
   return (
     <main>
-      CartPage
-      <div className="flex flex-col gap-4">
-        {cartItems.map((item) => (
-          <CartItem key={item.flower.id} cartItem={item} />
-        ))}
-        <span className="w-full text-right italic font-bold">Total Price: ${totalPrice}</span>
-      </div>
+      <h1 className="text-4xl font-bold text-center mb-8">Your Cart</h1>
+      <CartComponent />
     </main>
   );
 };

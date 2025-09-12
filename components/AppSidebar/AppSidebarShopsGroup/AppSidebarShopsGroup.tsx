@@ -1,7 +1,11 @@
 "use client";
 
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
-import { SidebarGroup, SidebarMenuItem } from "@/components/ui/sidebar";
+import {
+  SidebarGroup,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
 import { useGetShopsQuery } from "@/redux/services/allShopsService";
 import Link from "next/link";
 
@@ -22,10 +26,12 @@ const AppSidebarShopsGroup = () => {
       </SidebarGroup>
     );
   return (
-    <SidebarGroup>
+    <SidebarGroup className="gap-2">
       {data?.shops.map((shop) => (
         <SidebarMenuItem key={shop.id}>
-          <Link href={`/shop/${shop.slug}`}>{shop.title}</Link>
+          <SidebarMenuButton asChild>
+            <Link href={`/shop/${shop.slug}`}>{shop.title}</Link>
+          </SidebarMenuButton>
         </SidebarMenuItem>
       ))}
     </SidebarGroup>
