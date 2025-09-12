@@ -6,7 +6,6 @@ import {
 } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
-
 interface CartState {
   cartItems: CartItem[];
 }
@@ -17,13 +16,17 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItemToCart: (state, action: PayloadAction<{ flower: FlowerType }>) => {
+    addItemToCart: (
+      state,
+      action: PayloadAction<{ flower: FlowerType; shopTitle: string }>
+    ) => {
       const newFlower = action.payload.flower;
+      const shopTitle = action.payload.shopTitle;
       state.cartItems = state.cartItems.some(
         (item) => item.flower.id === newFlower.id
       )
         ? state.cartItems
-        : [...state.cartItems, { flower: newFlower, amount: 1 }];
+        : [...state.cartItems, { flower: newFlower, amount: 1, shopTitle }];
     },
     removeItemFromCart: (
       state,

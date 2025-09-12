@@ -50,7 +50,7 @@ const ShopPageContent = ({ shopId }: Props) => {
           handlePerPageChange={handlePerPageChange}
         />
       </div>
-      <ShopFlowersContainer flowers={flowers} />
+      <ShopFlowersContainer flowers={flowers} shopTitle={data.shop.title} />
       <PaginationComponent
         handleGoToPage={handleGoToPage}
         handleNextPage={handleNextPage}

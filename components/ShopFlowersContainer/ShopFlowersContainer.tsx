@@ -2,14 +2,15 @@ import type { FlowerType } from "@/lib/types";
 import FlowerCard from "../FlowerCard/FlowerCard";
 
 interface Props {
-    flowers: FlowerType[]
+  flowers: FlowerType[];
+  shopTitle: string;
 }
 
-const ShopFlowersContainer = ({flowers}:Props) => {
+const ShopFlowersContainer = ({ flowers, shopTitle }: Props) => {
   return (
     <div className="flex flex-wrap gap-4 border-2 border-black">
       {flowers.map((flower) => (
-        <FlowerCard key={flower.id} flower={flower} />
+        <FlowerCard key={flower.id} flower={flower} shopTitle={shopTitle} />
       ))}
     </div>
   );

@@ -14,4 +14,5 @@ export type FlowerType = Prisma.FlowerGetPayload<object>;
 export interface CartItem {
   flower: FlowerType;
   amount: number;
+  shopTitle: string;
 }

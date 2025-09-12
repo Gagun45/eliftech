@@ -15,9 +15,10 @@ import { useDispatch } from "react-redux";
 
 interface Props {
   flower: FlowerType;
+  shopTitle: string;
 }
 
-const CartManage = ({ flower }: Props) => {
+const CartManage = ({ flower, shopTitle }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const { isInCart, amountInCart } = useSelector(isFlowerInCart(flower.id));
   return (
@@ -48,7 +49,7 @@ const CartManage = ({ flower }: Props) => {
           Remove
         </Button>
       ) : (
-        <Button onClick={() => dispatch(addItemToCart({ flower }))}>
+        <Button onClick={() => dispatch(addItemToCart({ flower, shopTitle }))}>
           Add to cart
         </Button>
       )}
