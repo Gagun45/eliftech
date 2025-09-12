@@ -18,7 +18,8 @@ model Flower {
   title    String
   imageUrl String @default("")
 
-  shop  Shop @relation("FlowersShop", fields: [shopId], references: [id])
+  shop   Shop @relation("FlowersShop", fields: [shopId], references: [id])
+  price  Int
   shopId Int
 }
 

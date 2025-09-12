@@ -31,11 +31,12 @@ const CreateFlowerForm = () => {
     resolver: zodResolver(FlowerSchema),
     defaultValues: {
       title: "",
+      price: 0,
     },
   });
   const onSubmit = async (values: CreateFlowerType) => {
-    const { title, shopId } = values;
-    const res = await createNewFlower({ title, shopId });
+    const { title, shopId, price } = values;
+    const res = await createNewFlower({ title, shopId, price });
     if (res.success) {
       toast.success(res.message);
     } else {
@@ -54,6 +55,26 @@ const CreateFlowerForm = () => {
               <FormLabel>Flower title</FormLabel>
               <FormControl>
                 <Input placeholder="Flower..." {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="price"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Flower price</FormLabel>
+              <FormControl>
+                <Input
+                  type="number"
+                  {...field}
+                  value={field.value ?? 0}
+                  onChange={({ target }) =>
+                    field.onChange(Number(target.value))
+                  }
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

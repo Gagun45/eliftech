@@ -7,9 +7,9 @@ export const createNewFlower = async (
   values: CreateFlowerType
 ): Promise<ActionReturnType> => {
   try {
-    const { title, shopId } = values;
+    const { title, shopId, price } = values;
     await prisma.flower.create({
-      data: { title, shopId },
+      data: { title, shopId, price },
     });
     return { success: true, message: "New flower created" };
   } catch (err) {
