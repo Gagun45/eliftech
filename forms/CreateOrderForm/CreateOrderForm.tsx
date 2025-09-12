@@ -70,6 +70,7 @@ const CreateOrderForm = () => {
   };
   return (
     <Form {...form}>
+      <h2 className="text-xl font-semibold italic">Fill in details below to make an order!</h2>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
@@ -97,7 +98,7 @@ const CreateOrderForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Order</Button>
       </form>
     </Form>
   );

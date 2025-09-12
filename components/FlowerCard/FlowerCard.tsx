@@ -7,7 +7,6 @@ interface Props {
 }
 
 const FlowerCard = ({ flower, shopTitle }: Props) => {
-  console.log("qweqwe");
   return (
     <div className="border-1 rounded-md border-black p-2 min-h-64 w-48 flex flex-col justify-between">
       <span>{flower.title}</span>

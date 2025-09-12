@@ -14,13 +14,13 @@ const CartComponent = () => {
     );
   return (
     <div className="flex flex-col gap-4">
-      <CreateOrderForm />
       {cartItems.map((item) => (
         <CartItem key={item.flower.id} cartItem={item} />
       ))}
       <span className="w-full text-right italic font-bold">
-        Total Price: ${totalPrice}
+        Total Price: {totalPrice}$
       </span>
+      <CreateOrderForm />
     </div>
   );
 };
