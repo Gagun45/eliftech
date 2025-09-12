@@ -6,5 +6,7 @@ export type CreateShopType = z.infer<typeof ShopSchema>;
 export type CreateFlowerType = z.infer<typeof FlowerSchema>;
 export type ActionReturnType = { success: boolean; message: string };
 
-export type ShopType = Prisma.ShopGetPayload<{ include: { flowers: true } }>;
+export type ShopType = Prisma.ShopGetPayload<{
+  include: { flowers: true; _count: { select: { flowers: true } } };
+}>;
 export type FlowerType = Prisma.FlowerGetPayload<object>;
