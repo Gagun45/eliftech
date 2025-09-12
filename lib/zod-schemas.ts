@@ -15,3 +15,12 @@ export const FlowerSchema = z.object({
       message: "Price must be between 1 and 2000",
     }),
 });
+
+export const orderSchema = z.object({
+  email: z.email(),
+  phone: z
+    .string()
+    .regex(/^\+?[1-9]\d{5,20}$/, {
+      message: "Enter valid phone number within 5-20 symbols range",
+    }),
+});

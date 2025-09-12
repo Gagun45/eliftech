@@ -47,7 +47,7 @@ const ShopPageContent = ({ shopId }: Props) => {
     perPage,
     sortOptionValue: currentSortOpion.value,
   });
-  if (!data?.shop) return <div>Failed to fetch data</div>;
+  if (!data?.shop) return null
   const {
     shop: {
       flowers,

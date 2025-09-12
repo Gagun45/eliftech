@@ -18,9 +18,10 @@ model Flower {
   title    String
   imageUrl String @default("")
 
-  shop   Shop @relation("FlowersShop", fields: [shopId], references: [id])
-  price  Int
-  shopId Int
+  shop      Shop     @relation("FlowersShop", fields: [shopId], references: [id])
+  price     Int
+  shopId    Int
+  createdAt DateTime @default(now())
 }
 
 model Shop {
@@ -28,4 +29,23 @@ model Shop {
   title   String   @unique
   slug    String   @unique @default(cuid())
   flowers Flower[] @relation("FlowersShop")
+}
+
+model Order {
+  id         Int         @id @default(autoincrement())
+  email      String
+  phone      String
+  orderItems OrderItem[]
+  totalPrice Int
+  createdAt  DateTime    @default(now())
+}
+
+model OrderItem {
+  id          Int    @id @default(autoincrement())
+  flowerTitle String
+  shopTitle   String
+  amount      Int
+  price       Int
+  order       Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId     Int
 }

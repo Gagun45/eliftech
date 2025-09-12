@@ -3,6 +3,7 @@
 import { getCart, selectCartTotalData } from "@/redux/slices/cartSlice";
 import { useSelector } from "react-redux";
 import CartItem from "../CartItem/CartItem";
+import CreateOrderForm from "@/forms/CreateOrderForm/CreateOrderForm";
 
 const CartComponent = () => {
   const { cartItems } = useSelector(getCart);
@@ -13,6 +14,7 @@ const CartComponent = () => {
     );
   return (
     <div className="flex flex-col gap-4">
+      <CreateOrderForm />
       {cartItems.map((item) => (
         <CartItem key={item.flower.id} cartItem={item} />
       ))}
