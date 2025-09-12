@@ -5,12 +5,14 @@ import {
   SidebarGroup,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { useGetShopsQuery } from "@/redux/services/allShopsService";
 import Link from "next/link";
 
 const AppSidebarShopsGroup = () => {
   const { data, isLoading, isError } = useGetShopsQuery();
+  const { setOpenMobile } = useSidebar();
   if (isLoading)
     return (
       <SidebarGroup>
@@ -26,13 +28,19 @@ const AppSidebarShopsGroup = () => {
       </SidebarGroup>
     );
   return (
-    <SidebarGroup className="gap-2">
+    <SidebarGroup className="gap-4">
+      <SidebarMenuItem className="text-2xl text-center py-4 font-semibold">
+        Shops
+      </SidebarMenuItem>
       {data?.shops.map((shop) => (
-        <SidebarMenuItem key={shop.id}>
-          <SidebarMenuButton asChild>
-            <Link href={`/shop/${shop.slug}`}>{shop.title}</Link>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
+        <SidebarMenuButton
+          key={shop.id}
+          onClick={() => setOpenMobile(false)}
+          className="text-2xl font-semibold py-8 hover:bg-blue-200"
+          asChild
+        >
+          <Link href={`/shop/${shop.slug}`}>{shop.title}</Link>
+        </SidebarMenuButton>
       ))}
     </SidebarGroup>
   );
