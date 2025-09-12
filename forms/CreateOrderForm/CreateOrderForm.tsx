@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingButton from "@/components/LoadingButton/LoadingButton";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -31,7 +32,7 @@ import { toast } from "sonner";
 
 const CreateOrderForm = () => {
   const { totalPrice } = useSelector(selectCartTotalData);
-  const [createOrder] = useCreateOrderMutation();
+  const [createOrder, { isLoading }] = useCreateOrderMutation();
   const dispatch = useDispatch<AppDispatch>();
   const { cartItems } = useSelector(getCart);
   const form = useForm<CreateOrderType>({
@@ -56,13 +57,13 @@ const CreateOrderForm = () => {
       orderItems,
     };
     try {
-      const res = await createOrder({ order });
-      if (res.data?.success) {
-        toast.success("Order created");
+      const res = await createOrder({ order }).unwrap();
+      if (res.success) {
+        toast.success(res.message);
         form.reset();
         dispatch(clearCart());
       } else {
-        toast.error("Something went wrong");
+        toast.error(res.message);
       }
     } catch {
       toast.error("Something went wrong");
@@ -70,7 +71,9 @@ const CreateOrderForm = () => {
   };
   return (
     <Form {...form}>
-      <h2 className="text-xl font-semibold italic">Fill in details below to make an order!</h2>
+      <h2 className="text-xl font-semibold italic">
+        Fill in details below to make an order!
+      </h2>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
@@ -98,7 +101,7 @@ const CreateOrderForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Order</Button>
+        {isLoading ? <LoadingButton /> : <Button type="submit">Order</Button>}
       </form>
     </Form>
   );

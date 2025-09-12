@@ -12,9 +12,11 @@ export const ordersApi = createApi({
     >({
       queryFn: async ({ order }) => {
         try {
+          console.log('Creating order...')
           const data = await createOrder(order);
           return { data };
-        } catch {
+        } catch (error) {
+          console.log("Order services error: ", error);
           return { data: { message: "Something went wrong", success: false } };
         }
       },
