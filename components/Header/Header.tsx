@@ -9,6 +9,7 @@ const Header = () => {
       <div className="flex items-center gap-2">
         <Link href={"/createshop"}>New shop</Link>
         <Link href={"/createflower"}>New flower</Link>
+        <Link href={"/orders/history"}>History</Link>
       </div>
       <HeaderCartState />
     </header>

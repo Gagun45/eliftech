@@ -1,10 +1,16 @@
 import type z from "zod";
-import type { FlowerSchema, orderSchema, ShopSchema } from "./zod-schemas";
+import type {
+  FlowerSchema,
+  orderSchema,
+  searchOrderSchema,
+  ShopSchema,
+} from "./zod-schemas";
 import type { Prisma } from "@prisma/client";
 
 export type CreateShopType = z.infer<typeof ShopSchema>;
 export type CreateFlowerType = z.infer<typeof FlowerSchema>;
 export type CreateOrderType = z.infer<typeof orderSchema>;
+export type SearchOrderType = z.infer<typeof searchOrderSchema>;
 export type ActionReturnType = { success: boolean; message: string };
 
 export type ShopType = Prisma.ShopGetPayload<{
@@ -34,3 +40,4 @@ export interface FlowerOrderInterface {
   totalPrice: number;
   orderItems: FlowerOrderItem[];
 }
+export type FlowerOrderInterfaceWithId = FlowerOrderInterface & { id: number };

@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "../prisma";
-import type { ActionReturnType, FlowerOrderInterface } from "../types";
+import type { ActionReturnType, FlowerOrderInterface, FlowerOrderInterfaceWithId } from "../types";
 
 export const createOrder = async (
   order: FlowerOrderInterface
@@ -41,5 +41,27 @@ export const getOrderById = async ({ orderId }: { orderId: number }) => {
     return { order };
   } catch {
     return { error: "Something went wrong" };
+  }
+};
+
+export const getOrdersByEmailAndPhone = async ({
+  email,
+  phone,
+}: {
+  email: string;
+  phone: string;
+}): Promise<{
+  success: boolean;
+  orders: (FlowerOrderInterfaceWithId)[];
+}> => {
+  try {
+    const orders = await prisma.order.findMany({
+      where: { email, phone },
+      include: { orderItems: true },
+    });
+    return { success: true, orders };
+  } catch (error) {
+    console.log("Get orders by email and phone error: ", error);
+    return { success: false, orders: [] };
   }
 };
