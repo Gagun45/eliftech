@@ -47,14 +47,15 @@ const ShopPageComponent = ({ shopId }: Props) => {
     perPage,
     sortOptionValue: currentSortOpion.value,
   });
-  if (!data?.shop) return null
+  if (!data?.shop) return <LoadingSpinner />;
   const {
     shop: {
       flowers,
       _count: { flowers: totalFlowers },
     },
   } = data;
-  if (flowers.length===0) return <span className="text-2xl font-bold">No flowers found</span>
+  if (flowers.length === 0)
+    return <span className="text-2xl font-bold">No flowers found</span>;
   return (
     <div className="flex flex-col gap-4 w-full max-w-5xl">
       <div className="flex items-center justify-between w-full">
@@ -69,7 +70,7 @@ const ShopPageComponent = ({ shopId }: Props) => {
         />
       </div>
       {isLoading || isFetching ? (
-        <LoadingSpinner className="mx-auto py-16"/>
+        <LoadingSpinner className="mx-auto py-16" />
       ) : (
         <ShopFlowersContainer flowers={flowers} shopTitle={data.shop.title} />
       )}
