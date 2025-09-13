@@ -8,8 +8,6 @@
 
     -[Features]
     -[Tech Stack]
-    -[Getting Started]
-    -[Scripts]
     -[Folder Structure]
 
 ## Features
