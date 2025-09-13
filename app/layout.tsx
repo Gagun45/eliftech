@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar/AppSidebar";
 import ReduxProvider from "@/redux/ReduxProvider/ReduxProvider";
+import CartInitializer from "@/redux/CartInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
+          <CartInitializer />
           <SidebarProvider>
             <AppSidebar />
             <div className="grow">

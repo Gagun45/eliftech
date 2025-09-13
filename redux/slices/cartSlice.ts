@@ -6,7 +6,7 @@ import {
 } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
-interface CartState {
+export interface CartState {
   cartItems: CartItem[];
 }
 
@@ -16,6 +16,9 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    setCartItems: (state, action: PayloadAction<{ cartItems: CartItem[] }>) => {
+      state.cartItems = action.payload.cartItems;
+    },
     addItemToCart: (
       state,
       action: PayloadAction<{ flower: FlowerType; shopTitle: string }>
@@ -86,6 +89,7 @@ export const {
   removeItemFromCart,
   decrementAmount,
   incrementAmount,
-  clearCart
+  clearCart,
+  setCartItems,
 } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -15,9 +15,9 @@ export const createOrder = async (
     const coupon = await prisma.coupon.findUnique({
       where: { code: couponCode },
     });
-    if (!coupon)
+    if (!coupon && couponCode)
       return { message: "Coupon not found", orderId: null, success: false };
-    const discount = coupon.discountPercentage;
+    const discount = coupon?.discountPercentage ?? 0;
     const newOrder = await prisma.order.create({
       data: {
         email,

@@ -21,14 +21,6 @@ const ProtectedComponent = () => {
     setHasAccess(false);
     router.push("/");
   };
-  // DEVELOMPENT MODE ONLY//
-  return (
-    <>
-      <Link href={"/createshop"}>Add shop</Link>
-      <Link href={"/createflower"}>Add flower</Link>
-      <Link href={"/createcoupon"}>Add coupon</Link>
-    </>
-  );
   return hasAccess ? (
     <>
       <Link href={"/createshop"}>Add shop</Link>
