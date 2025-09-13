@@ -1,8 +1,8 @@
-import type { FlowerOrderInterfaceWithId } from "@/lib/types";
+import type { OrderReturnInterface } from "@/lib/types";
 import OrderCard from "../OrderCard/OrderCard";
 
 interface Props {
-  orders: FlowerOrderInterfaceWithId[];
+  orders: OrderReturnInterface[];
 }
 
 const OrdersHistoryContainer = ({ orders }: Props) => {

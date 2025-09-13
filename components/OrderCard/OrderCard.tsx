@@ -1,8 +1,8 @@
-import type { FlowerOrderInterfaceWithId } from "@/lib/types";
+import type { OrderReturnInterface } from "@/lib/types";
 import Link from "next/link";
 
 interface Props {
-  order: FlowerOrderInterfaceWithId;
+  order: OrderReturnInterface;
 }
 
 const OrderCard = ({ order }: Props) => {
@@ -14,18 +14,28 @@ const OrderCard = ({ order }: Props) => {
       >
         Order #{order.id}
       </Link>
-      {order.orderItems.map((item) => (
-        <div key={item.flowerTitle} className="flex justify-between gap-2">
-          <span>
-            <strong>{item.flowerTitle}</strong> from <i>{item.shopTitle}</i>
-          </span>
-          <span>
-            {item.amount} x {item.price}$ =
-            <strong>{item.amount * item.price}$</strong>
-          </span>
-        </div>
-      ))}
-      <span className="w-full text-right font-bold mt-4">Total: {order.totalPrice}$</span>
+      <div className="flex flex-col gap-2 border-b-2 border-black">
+        {order.orderItems.map((item) => (
+          <div key={item.flowerTitle} className="flex justify-between gap-2">
+            <span>
+              <strong>{item.flowerTitle}</strong> from <i>{item.shopTitle}</i>
+            </span>
+            <span>
+              {item.amount} x {item.price}$ =
+              <strong>{item.amount * item.price}$</strong>
+            </span>
+          </div>
+        ))}
+      </div>
+      <span className="ml-auto font-semibold">
+        Sum: <strong>{order.priceBeforeDiscount}$</strong>
+      </span>
+      <span className="ml-auto font-semibold">
+        Discount: <strong>{order.discount}%</strong>
+      </span>
+      <span className="ml-auto font-semibold border-2 border-black px-2">
+        Total price: <strong>{order.priceAfterDiscount}$</strong>
+      </span>
     </div>
   );
 };

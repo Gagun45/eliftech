@@ -42,6 +42,17 @@ export interface FlowerOrderInterface {
   email: string;
   phone: string;
   totalPrice: number;
+  couponCode: string;
   orderItems: FlowerOrderItem[];
 }
-export type FlowerOrderInterfaceWithId = FlowerOrderInterface & { id: number };
+
+export interface OrderReturnInterface {
+  id: number;
+  address: string;
+  email: string;
+  phone: string;
+  priceBeforeDiscount: number;
+  priceAfterDiscount: number;
+  discount: number;
+  orderItems: FlowerOrderItem[];
+}

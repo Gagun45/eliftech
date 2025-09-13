@@ -4,20 +4,30 @@ import prisma from "../prisma";
 import type {
   ActionReturnType,
   FlowerOrderInterface,
-  FlowerOrderInterfaceWithId,
+  OrderReturnInterface,
 } from "../types";
 
 export const createOrder = async (
   order: FlowerOrderInterface
 ): Promise<ActionReturnType & { orderId: number | null }> => {
   try {
-    const { email, orderItems, phone, totalPrice, address } = order;
+    const { email, orderItems, phone, totalPrice, address, couponCode } = order;
+    const coupon = await prisma.coupon.findUnique({
+      where: { code: couponCode },
+    });
+    if (!coupon)
+      return { message: "Coupon not found", orderId: null, success: false };
+    const discount = coupon.discountPercentage;
     const newOrder = await prisma.order.create({
       data: {
         email,
         phone,
         address,
-        totalPrice,
+        priceBeforeDiscount: totalPrice,
+        priceAfterDiscount: Math.floor(
+          totalPrice - (totalPrice * discount) / 100
+        ),
+        discount,
         orderItems: {
           create: orderItems.map((item) => ({
             flowerTitle: item.flowerTitle,
@@ -57,7 +67,7 @@ export const getOrdersByEmailAndPhone = async ({
   phone: string;
 }): Promise<{
   success: boolean;
-  orders: FlowerOrderInterfaceWithId[];
+  orders: OrderReturnInterface[];
 }> => {
   try {
     const orders = await prisma.order.findMany({

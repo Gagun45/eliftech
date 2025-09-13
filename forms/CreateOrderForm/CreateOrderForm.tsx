@@ -31,7 +31,11 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { toast } from "sonner";
 
-const CreateOrderForm = () => {
+interface Props {
+  couponCode: string | null;
+}
+
+const CreateOrderForm = ({ couponCode }: Props) => {
   const { totalPrice } = useSelector(selectCartTotalData);
   const [createOrder, { isLoading }] = useCreateOrderMutation();
   const router = useRouter();
@@ -59,6 +63,7 @@ const CreateOrderForm = () => {
       totalPrice,
       orderItems,
       address,
+      couponCode: couponCode ?? "",
     };
     try {
       const res = await createOrder({ order }).unwrap();

@@ -32,13 +32,15 @@ model Shop {
 }
 
 model Order {
-  id         Int         @id @default(autoincrement())
-  email      String
-  phone      String
-  orderItems OrderItem[]
-  totalPrice Int
-  address    String
-  createdAt  DateTime    @default(now())
+  id                  Int         @id @default(autoincrement())
+  email               String
+  phone               String
+  orderItems          OrderItem[]
+  priceBeforeDiscount Int
+  address             String
+  discount            Int
+  priceAfterDiscount  Int
+  createdAt           DateTime    @default(now())
 }
 
 model Coupon {

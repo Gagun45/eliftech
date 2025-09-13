@@ -1,13 +1,13 @@
 "use client";
 
 import SearchOrderForm from "@/forms/SearchOrderForm/SearchOrderForm";
-import type { FlowerOrderInterfaceWithId } from "@/lib/types";
+import type { OrderReturnInterface } from "@/lib/types";
 import { useState } from "react";
 import OrdersHistoryContainer from "../OrdersHistoryContainer/OrdersHistoryContainer";
 
 const OrdersHistoryComponent = () => {
-  const [orders, setOrders] = useState<FlowerOrderInterfaceWithId[]>([]);
-  const handleSetOrders = (orders: FlowerOrderInterfaceWithId[]) => {
+  const [orders, setOrders] = useState<OrderReturnInterface[]>([]);
+  const handleSetOrders = (orders: OrderReturnInterface[]) => {
     setOrders(orders);
   };
   return (

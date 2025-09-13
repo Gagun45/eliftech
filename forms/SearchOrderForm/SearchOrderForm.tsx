@@ -11,13 +11,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { getOrdersByEmailAndPhone } from "@/lib/actions/order.actions";
-import type { FlowerOrderInterfaceWithId, SearchOrderType } from "@/lib/types";
+import type { OrderReturnInterface, SearchOrderType } from "@/lib/types";
 import { searchOrderSchema } from "@/lib/zod-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 interface Props {
-  setOrders: (orders: FlowerOrderInterfaceWithId[]) => void;
+  setOrders: (orders: OrderReturnInterface[]) => void;
 }
 
 const SearchOrderForm = ({ setOrders }: Props) => {

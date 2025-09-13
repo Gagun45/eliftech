@@ -60,7 +60,7 @@ const CreateCouponForm = () => {
           name="discountPercentage"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Flower price</FormLabel>
+              <FormLabel>Discount (percentages)</FormLabel>
               <FormControl>
                 <Input
                   type="number"
