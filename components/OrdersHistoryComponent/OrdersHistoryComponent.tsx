@@ -1,9 +1,7 @@
 "use client";
 
 import SearchOrderForm from "@/forms/SearchOrderForm/SearchOrderForm";
-import type {
-  FlowerOrderInterfaceWithId,
-} from "@/lib/types";
+import type { FlowerOrderInterfaceWithId } from "@/lib/types";
 import { useState } from "react";
 import OrdersHistoryContainer from "../OrdersHistoryContainer/OrdersHistoryContainer";
 

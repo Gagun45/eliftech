@@ -32,7 +32,7 @@ const SearchOrderForm = ({ setOrders }: Props) => {
     const { email, phone } = values;
     const res = await getOrdersByEmailAndPhone({ email, phone });
     if (res.success) {
-        setOrders(res.orders)
+      setOrders(res.orders);
     }
   };
   return (
@@ -64,7 +64,18 @@ const SearchOrderForm = ({ setOrders }: Props) => {
             </FormItem>
           )}
         />
-        <Button type="submit">Search</Button>
+        <div className="flex items-center gap-4">
+          <Button type="submit">Search</Button>
+          <Button
+            type="button"
+            onClick={() => {
+              form.reset();
+              setOrders([]);
+            }}
+          >
+            Clear
+          </Button>
+        </div>
       </form>
     </Form>
   );
