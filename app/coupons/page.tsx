@@ -1,3 +1,4 @@
+import CouponCard from "@/components/CouponCard/CouponCard";
 import prisma from "@/lib/prisma";
 import type { Coupon } from "@prisma/client";
 
@@ -12,9 +13,9 @@ const CouponsPage = async () => {
   return (
     <main>
       CouponsPage
-      <div className="flex flex-col">
+      <div className="flex flex-wrap gap-2 w-full">
         {coupons.map((coupon) => (
-          <div key={coupon.id}>{coupon.label}</div>
+          <CouponCard coupon={coupon} key={coupon.id} />
         ))}
       </div>
     </main>
