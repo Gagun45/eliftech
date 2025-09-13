@@ -8,6 +8,7 @@ const Header = () => {
     <header className="w-full gap-4 h-24 bg-blue-400 flex items-center px-12">
       <SidebarTrigger />
       <Link href={"/orders/history"}>History</Link>
+      <Link href={"/coupons"}>Coupons</Link>
       <ProtectedComponent />
       <HeaderCartState />
     </header>

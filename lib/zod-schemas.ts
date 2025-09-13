@@ -5,6 +5,16 @@ export const ShopSchema = z.object({
   flowerIds: z.array(z.number().int()).optional(),
 });
 
+export const CouponSchema = z.object({
+  label: z.string().min(1, "Label is required"),
+  discountPercentage: z
+    .number()
+    .int()
+    .refine((val) => val > 0 && val < 100, {
+      message: "Discount must be between 1-99",
+    }),
+});
+
 export const FlowerSchema = z.object({
   title: z.string().min(1, "Title is required"),
   shopId: z.number().int(),

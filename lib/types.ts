@@ -1,5 +1,6 @@
 import type z from "zod";
 import type {
+  CouponSchema,
   FlowerSchema,
   orderSchema,
   searchOrderSchema,
@@ -11,6 +12,8 @@ export type CreateShopType = z.infer<typeof ShopSchema>;
 export type CreateFlowerType = z.infer<typeof FlowerSchema>;
 export type CreateOrderType = z.infer<typeof orderSchema>;
 export type SearchOrderType = z.infer<typeof searchOrderSchema>;
+export type CreateCouponType = z.infer<typeof CouponSchema>;
+
 export type ActionReturnType = { success: boolean; message: string };
 
 export type ShopType = Prisma.ShopGetPayload<{
