@@ -3,7 +3,7 @@ import CreateShopForm from "@/forms/CreateShopForm/CreateShopForm";
 const CreateShopPage = () => {
   return (
     <main className="flex flex-col">
-      <span>CreateShopPage</span>
+      <span>Add new shop</span>
       <CreateShopForm />
     </main>
   );

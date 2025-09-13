@@ -2,7 +2,7 @@ import OrdersHistoryComponent from "@/components/OrdersHistoryComponent/OrdersHi
 
 const OrdersHistoryPage = () => {
   return (
-    <main>
+    <main className="gap-8">
       <h1 className="font-semibold text-xl">
         Enter your email and phone to find your orders
       </h1>

@@ -3,7 +3,7 @@ import CreateFlowerForm from "@/forms/CreateFlowerForm/CreateFlowerForm";
 const CreateFlowerPage = () => {
   return (
     <main className="flex flex-col">
-      <span>Create Flower </span>
+      <span>Add new flower </span>
       <CreateFlowerForm />
     </main>
   );
