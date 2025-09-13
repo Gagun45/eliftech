@@ -25,13 +25,13 @@ const CartComponent = () => {
       ))}
       {coupon ? (
         <div className="flex flex-col items-end ml-auto font-semibold">
-          <span>Before discount: {totalPrice}</span>
+          <span>Before discount: {totalPrice}$</span>
           <span>Discount: {coupon.discountPercentage}%</span>
           <span>
             Total price:{" "}
             {Math.floor(
               totalPrice - (totalPrice * coupon.discountPercentage) / 100
-            )}
+            )}$
           </span>
           <div className="flex flex-wrap items-center gap-2 border-1 py-1 px-4 border-black rounded-md">
             <span>Coupon applied: {coupon.code}</span>

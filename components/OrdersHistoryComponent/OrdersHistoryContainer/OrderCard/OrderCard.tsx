@@ -16,12 +16,12 @@ const OrderCard = ({ order }: Props) => {
       </Link>
       <div className="flex flex-col gap-2 border-b-2 border-black">
         {order.orderItems.map((item) => (
-          <div key={item.flowerTitle} className="flex justify-between gap-2">
+          <div key={item.flowerTitle} className="flex flex-wrap justify-between gap-2">
             <span>
               <strong>{item.flowerTitle}</strong> from <i>{item.shopTitle}</i>
             </span>
-            <span>
-              {item.amount} x {item.price}$ =
+            <span className="ml-auto">
+              {item.amount} x {item.price}$ = {" "}
               <strong>{item.amount * item.price}$</strong>
             </span>
           </div>

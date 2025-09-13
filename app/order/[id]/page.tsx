@@ -44,7 +44,7 @@ const OrderDetailsPage = async ({ params }: Props) => {
           Address: <strong>{order.address}</strong>
         </span>
         <span className="ml-auto font-semibold">
-          Date: <strong>{order.createdAt.toLocaleString()}</strong>
+          Date: <strong>{new Date(order.createdAt).toLocaleString()}</strong>
         </span>
       </div>
     </main>
