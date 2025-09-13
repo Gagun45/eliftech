@@ -14,6 +14,11 @@ export type CreateOrderType = z.infer<typeof orderSchema>;
 export type SearchOrderType = z.infer<typeof searchOrderSchema>;
 export type CreateCouponType = z.infer<typeof CouponSchema>;
 
+export interface LinkInterface {
+  label: string;
+  href: string;
+}
+
 export type ActionReturnType = { success: boolean; message: string };
 
 export type ShopType = Prisma.ShopGetPayload<{

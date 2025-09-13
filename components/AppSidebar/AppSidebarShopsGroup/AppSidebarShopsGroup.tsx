@@ -29,14 +29,14 @@ const AppSidebarShopsGroup = () => {
     );
   return (
     <SidebarGroup className="gap-4">
-      <SidebarMenuItem className="text-2xl text-center py-4 font-semibold">
+      <SidebarMenuItem className="bg-blue-300 rounded-md text-2xl text-center py-4 font-semibold">
         Shops
       </SidebarMenuItem>
       {data?.shops.map((shop) => (
         <SidebarMenuButton
           key={shop.id}
           onClick={() => setOpenMobile(false)}
-          className="text-2xl font-semibold py-8 hover:bg-blue-200"
+          className="text-2xl font-semibold py-8 hover:bg-blue-300"
           asChild
         >
           <Link href={`/shop/${shop.slug}`}>{shop.title}</Link>
