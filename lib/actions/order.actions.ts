@@ -1,17 +1,22 @@
 "use server";
 
 import prisma from "../prisma";
-import type { ActionReturnType, FlowerOrderInterface, FlowerOrderInterfaceWithId } from "../types";
+import type {
+  ActionReturnType,
+  FlowerOrderInterface,
+  FlowerOrderInterfaceWithId,
+} from "../types";
 
 export const createOrder = async (
   order: FlowerOrderInterface
 ): Promise<ActionReturnType & { orderId: number | null }> => {
   try {
-    const { email, orderItems, phone, totalPrice } = order;
+    const { email, orderItems, phone, totalPrice, address } = order;
     const newOrder = await prisma.order.create({
       data: {
         email,
         phone,
+        address,
         totalPrice,
         orderItems: {
           create: orderItems.map((item) => ({
@@ -52,7 +57,7 @@ export const getOrdersByEmailAndPhone = async ({
   phone: string;
 }): Promise<{
   success: boolean;
-  orders: (FlowerOrderInterfaceWithId)[];
+  orders: FlowerOrderInterfaceWithId[];
 }> => {
   try {
     const orders = await prisma.order.findMany({

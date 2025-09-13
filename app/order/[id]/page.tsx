@@ -32,10 +32,13 @@ const OrderDetailsPage = async ({ params }: Props) => {
         ))}
 
         <span className="ml-auto font-semibold">
-          Total: {order.totalPrice}$
+          Total: <strong>{order.totalPrice}$</strong>
+        </span>
+        <span className="ml-auto">
+          Address: <strong>{order.address}</strong>
         </span>
         <span className="ml-auto font-semibold">
-          Date: {order.createdAt.toLocaleString()}
+          Date: <strong>{order.createdAt.toLocaleString()}</strong>
         </span>
       </div>
     </main>

@@ -37,6 +37,7 @@ model Order {
   phone      String
   orderItems OrderItem[]
   totalPrice Int
+  address    String
   createdAt  DateTime    @default(now())
 }
 

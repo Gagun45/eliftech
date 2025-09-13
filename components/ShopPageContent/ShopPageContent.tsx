@@ -54,6 +54,7 @@ const ShopPageContent = ({ shopId }: Props) => {
       _count: { flowers: totalFlowers },
     },
   } = data;
+  if (flowers.length===0) return <span className="text-2xl font-bold">No flowers found</span>
   return (
     <div className="flex flex-col gap-4 w-full max-w-5xl">
       <div className="flex items-center justify-between w-full">

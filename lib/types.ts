@@ -35,6 +35,7 @@ export interface FlowerOrderItem {
   price: number;
 }
 export interface FlowerOrderInterface {
+  address: string;
   email: string;
   phone: string;
   totalPrice: number;

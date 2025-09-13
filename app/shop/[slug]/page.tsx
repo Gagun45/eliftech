@@ -7,10 +7,16 @@ interface Props {
 
 const ShopPage = async ({ params }: Props) => {
   const { slug } = await params;
-  const shop = await prisma.shop.findUnique({
-    where: { slug },
-    select: { id: true, title: true },
-  });
+  let shop: { id: number; title: string } | null = null;
+  try {
+    const reqShop = await prisma.shop.findUniqueOrThrow({
+      where: { slug },
+      select: { id: true, title: true },
+    });
+    shop = reqShop;
+  } catch (err) {
+    console.log("Erro fetching data error: ", err);
+  }
 
   if (!shop) return <main>No shop found</main>;
   return (

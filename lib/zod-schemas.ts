@@ -21,6 +21,7 @@ export const orderSchema = z.object({
   phone: z.string().regex(/^\+?[1-9]\d{5,20}$/, {
     message: "Enter valid phone number within 5-20 symbols range",
   }),
+  address: z.string().min(1, { message: "Adderss required" }),
 });
 
 export const searchOrderSchema = z.object({

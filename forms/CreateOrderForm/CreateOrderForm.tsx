@@ -42,10 +42,11 @@ const CreateOrderForm = () => {
     defaultValues: {
       email: "",
       phone: "",
+      address: "",
     },
   });
   const onSubmit = async (values: CreateOrderType) => {
-    const { email, phone } = values;
+    const { email, phone, address } = values;
     const orderItems: FlowerOrderItem[] = cartItems.map((item) => ({
       amount: item.amount,
       flowerTitle: item.flower.title,
@@ -57,6 +58,7 @@ const CreateOrderForm = () => {
       phone,
       totalPrice,
       orderItems,
+      address,
     };
     try {
       const res = await createOrder({ order }).unwrap();
@@ -76,7 +78,7 @@ const CreateOrderForm = () => {
       <h2 className="text-xl font-semibold italic">
         Fill in details below to make an order!
       </h2>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
         <FormField
           control={form.control}
           name="email"
@@ -98,6 +100,19 @@ const CreateOrderForm = () => {
               <FormLabel>Phone</FormLabel>
               <FormControl>
                 <Input type="tel" placeholder="+123" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="address"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Address</FormLabel>
+              <FormControl>
+                <Input placeholder="123 Avenue" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
