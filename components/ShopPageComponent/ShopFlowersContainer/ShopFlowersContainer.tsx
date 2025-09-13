@@ -1,5 +1,5 @@
+import FlowerCard from "@/components/ShopPageComponent/ShopFlowersContainer/FlowerCard/FlowerCard";
 import type { FlowerType } from "@/lib/types";
-import FlowerCard from "../FlowerCard/FlowerCard";
 
 interface Props {
   flowers: FlowerType[];

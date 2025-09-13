@@ -1,5 +1,4 @@
 import type { CartItem } from "@/lib/types";
-import { Button } from "../ui/button";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/redux/store";
 import {
@@ -8,6 +7,7 @@ import {
   removeItemFromCart,
 } from "@/redux/slices/cartSlice";
 import { XIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   cartItem: CartItem;

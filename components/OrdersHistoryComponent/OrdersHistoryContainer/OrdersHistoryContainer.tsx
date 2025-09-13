@@ -1,5 +1,5 @@
+import OrderCard from "@/components/OrdersHistoryComponent/OrdersHistoryContainer/OrderCard/OrderCard";
 import type { OrderReturnInterface } from "@/lib/types";
-import OrderCard from "../OrderCard/OrderCard";
 
 interface Props {
   orders: OrderReturnInterface[];

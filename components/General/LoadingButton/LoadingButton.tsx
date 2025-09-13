@@ -1,5 +1,5 @@
+import { Button } from "@/components/ui/button";
 import { BeatLoader } from "react-spinners";
-import { Button } from "../ui/button";
 
 interface Props {
   className?: string;

@@ -3,7 +3,7 @@
 import SearchOrderForm from "@/forms/SearchOrderForm/SearchOrderForm";
 import type { OrderReturnInterface } from "@/lib/types";
 import { useState } from "react";
-import OrdersHistoryContainer from "../OrdersHistoryContainer/OrdersHistoryContainer";
+import OrdersHistoryContainer from "./OrdersHistoryContainer/OrdersHistoryContainer";
 
 const OrdersHistoryComponent = () => {
   const [orders, setOrders] = useState<OrderReturnInterface[]>([]);

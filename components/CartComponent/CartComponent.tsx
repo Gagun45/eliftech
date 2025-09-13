@@ -2,11 +2,11 @@
 
 import { getCart, selectCartTotalData } from "@/redux/slices/cartSlice";
 import { useSelector } from "react-redux";
-import CartItem from "../CartItem/CartItem";
 import CreateOrderForm from "@/forms/CreateOrderForm/CreateOrderForm";
 import { useState } from "react";
 import CouponInput from "./CouponInput/CouponInput";
 import type { Coupon } from "@prisma/client";
+import CartItem from "./CartItem/CartItem";
 
 const CartComponent = () => {
   const { cartItems } = useSelector(getCart);

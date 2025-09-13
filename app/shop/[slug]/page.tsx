@@ -1,4 +1,4 @@
-import ShopPageContent from "@/components/ShopPageContent/ShopPageContent";
+import ShopPageComponent from "@/components/ShopPageComponent/ShopPageComponent";
 import prisma from "@/lib/prisma";
 
 interface Props {
@@ -22,7 +22,7 @@ const ShopPage = async ({ params }: Props) => {
   return (
     <main>
       <h1 className="text-center font-bold text-4xl py-4">{shop.title}</h1>
-      <ShopPageContent shopId={shop.id} />
+      <ShopPageComponent shopId={shop.id} />
     </main>
   );
 };

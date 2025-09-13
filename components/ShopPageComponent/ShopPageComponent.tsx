@@ -1,20 +1,20 @@
 "use client";
 
-import { useGetSingleShopQuery } from "@/redux/services/singleShopService";
 import { useEffect, useState } from "react";
-import PaginationComponent from "../PaginationComponent/PaginationComponent";
-import ShopFlowersContainer from "../ShopFlowersContainer/ShopFlowersContainer";
-import PerPageSelect from "../PerPageSelect/PerPageSelect";
+import PaginationComponent from "../General/PaginationComponent/PaginationComponent";
 import { PER_PAGE_CONSTANTS, SORT_FLOWERS_CONSTANTS } from "@/lib/constants";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "../General/LoadingSpinner/LoadingSpinner";
 import type { SortFlowersInterface } from "@/lib/types";
-import SortingComponent from "../SortingComponent/SortingComponent";
+import { useGetSingleShopQuery } from "@/redux/services/singleShopService";
+import SortingComponent from "../General/SortingComponent/SortingComponent";
+import PerPageSelect from "../General/PerPageSelect/PerPageSelect";
+import ShopFlowersContainer from "./ShopFlowersContainer/ShopFlowersContainer";
 
 interface Props {
   shopId: number;
 }
 
-const ShopPageContent = ({ shopId }: Props) => {
+const ShopPageComponent = ({ shopId }: Props) => {
   const [perPage, setPerPage] = useState(PER_PAGE_CONSTANTS[0]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSortOpion, setCurrentSortOption] =
@@ -85,4 +85,4 @@ const ShopPageContent = ({ shopId }: Props) => {
     </div>
   );
 };
-export default ShopPageContent;
+export default ShopPageComponent;

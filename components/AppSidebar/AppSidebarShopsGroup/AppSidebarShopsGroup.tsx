@@ -1,6 +1,6 @@
 "use client";
 
-import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
+import LoadingSpinner from "@/components/General/LoadingSpinner/LoadingSpinner";
 import {
   SidebarGroup,
   SidebarMenuButton,
