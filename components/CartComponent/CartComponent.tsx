@@ -7,6 +7,8 @@ import { useState } from "react";
 import CouponInput from "./CouponInput/CouponInput";
 import type { Coupon } from "@prisma/client";
 import CartItem from "./CartItem/CartItem";
+import { Button } from "../ui/button";
+import { XIcon } from "lucide-react";
 
 const CartComponent = () => {
   const { cartItems } = useSelector(getCart);
@@ -31,6 +33,12 @@ const CartComponent = () => {
               totalPrice - (totalPrice * coupon.discountPercentage) / 100
             )}
           </span>
+          <div className="flex flex-wrap items-center gap-2 border-1 py-1 px-4 border-black rounded-md">
+            <span>Coupon applied: {coupon.code}</span>
+            <Button variant={'destructive'} onClick={() => setCoupon(null)}>
+              <XIcon />
+            </Button>
+          </div>
         </div>
       ) : (
         <span className="w-full text-right italic font-bold">

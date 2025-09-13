@@ -32,7 +32,6 @@ store.subscribe(() => {
     prevCartItems = currentCartItems;
     try {
       localStorage.setItem("cart", JSON.stringify(currentCartItems ?? []));
-      console.log("Cart updated to: ", currentCartItems);
     } catch {}
   }
 });
