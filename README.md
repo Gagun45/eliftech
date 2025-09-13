@@ -2,6 +2,8 @@
 
 # Next.js test project demonstrating CRUD functionality, backend interactions using Redux Toolkit + RTK Query, UI responsiveness
 
+# Project is being deployed and can be accessed via link: https://eliftech-ruddy.vercel.app/
+
 ## Table of Contents
 
     -[Features]
