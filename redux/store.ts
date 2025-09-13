@@ -23,20 +23,18 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-let isFirstRun = 1;
+let prevCartItems = store.getState().cart.cartItems;
 
 store.subscribe(() => {
-  console.log(isFirstRun)
-  if (isFirstRun < 25) {
-    isFirstRun += 1;
-    return;
+  const currentCartItems = store.getState().cart.cartItems;
+
+  if (currentCartItems !== prevCartItems) {
+    prevCartItems = currentCartItems;
+    try {
+      localStorage.setItem("cart", JSON.stringify(currentCartItems ?? []));
+      console.log("Cart updated to: ", currentCartItems);
+    } catch {}
   }
-  console.log('updating store')
-  const state = store.getState();
-  const cartItems = state.cart.cartItems ?? [{ amount: 2 }];
-  try {
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-  } catch {}
 });
 
 export type RootState = ReturnType<typeof store.getState>;

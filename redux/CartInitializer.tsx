@@ -1,19 +1,16 @@
 "use client";
 
+import { useEffect } from "react";
+import { loadCart } from "./redux-helper";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "./store";
-import { useEffect } from "react";
 import { setCartItems } from "./slices/cartSlice";
 
 const CartInitializer = () => {
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    try {
-      const storedCart = localStorage.getItem("cart");
-      if (storedCart) {
-        dispatch(setCartItems({ cartItems: JSON.parse(storedCart) }));
-      }
-    } catch {}
+    const storedCart = loadCart();
+    dispatch(setCartItems({ cartItems: storedCart }));
   }, [dispatch]);
   return null;
 };
